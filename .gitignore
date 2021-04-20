@@ -111,6 +111,7 @@ env.bak/
 venv.bak/
 app/app/.env
 venv
+postgres-variables.env
 
 # Spyder project settings
 .spyderproject
