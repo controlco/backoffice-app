@@ -14,7 +14,7 @@ Backend para la Administración de Propiedades.
 1. Clonar el repositorio localmente
 2. [Instalar y preparar un entorno virtual](#entorno-virtual) en la carpeta raíz (donde se encuentra el archivo `requirements.txt`).
 3. Instalar **postgresql 12** y [crear una base de datos para utilizar localmente](#base-de-datos) (https://www.postgresql.org/download/).
-4. Crear un archivo `.env` en el directorio `app/app/` (donde se encuentra el módulo `settings.py`) y [setear las variables de entorno](#variables-de-entorno).
+4. Crear un archivo `.env` en el directorio `app/app/` (donde se encuentra el módulo `settings.py`) y [setear las variables de entorno](#variables-de-entorno-django).
 5. Correr `docker-compose up`.
 6. Correr `docker-compose run web python manage.py migrate`.
 
