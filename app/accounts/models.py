@@ -9,13 +9,16 @@ class User(AbstractUser):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
-        unique=True
+        unique=True,
+        blank=False,
+        null=False,
         )
     rut = models.CharField(max_length=10, blank=True, null=True)
     birth_date = models.DateTimeField(blank=True, null=True)
     is_owner = models.BooleanField(default=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    
     
     def get_absolute_url(self):
         return reverse('user-detail', args=[str(self.id)])
