@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from accounts.models import User
+from accounts.models import User, Report
 from property_manager.serializers import PropertySerializer
 
 
@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["username", "password", "properties"]
+        fields = ["id", "username", "password", "properties"]
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -16,3 +16,10 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data["password"])
         user.save()
         return user
+
+
+class ReportSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Report
+        fields = ["title", "content", "owner", "reported_user"]
