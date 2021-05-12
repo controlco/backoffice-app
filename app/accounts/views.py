@@ -1,6 +1,6 @@
-from accounts.serializers import UserSerializer
+from accounts.serializers import UserSerializer, ReportSerializer
 from rest_framework import viewsets
-from accounts.models import User
+from accounts.models import User, Report
 from rest_framework import permissions
 from accounts.permissions import IsPostOrOwnerOrReadOnly
 
@@ -12,3 +12,8 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     permission_classes = (IsPostOrOwnerOrReadOnly, )
+
+
+class ReportViewSet(viewsets.ModelViewSet):
+    queryset = Report.objects.all()
+    serializer_class = ReportSerializer
