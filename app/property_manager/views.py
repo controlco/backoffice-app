@@ -16,6 +16,7 @@ class PropertyViewSet(viewsets.ModelViewSet):
     # called when request POST
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
@@ -29,3 +30,14 @@ class RegionViewSet(viewsets.ModelViewSet):
         region = self.get_object()
         districts = region.district.all()
         return Response([DistrictSerializer(district).data for district in districts])
+
+
+class DistrictViewSet(viewsets.ModelViewSet):
+    queryset = District.objects.all()
+    serializer_class = DistrictSerializer
+
+    @action(methods=["GET"], detail=True)
+    def properties(self, request, pk=None):
+        district = self.get_object()
+        properties = district.property.all()
+        return Response([PropertySerializer(property).data for property in properties])
