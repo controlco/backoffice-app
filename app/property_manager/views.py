@@ -2,6 +2,8 @@ from property_manager.serializers import PropertySerializer, RegionSerializer, D
 from rest_framework import viewsets
 from property_manager.models import Property, Region, District
 from rest_framework import permissions
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from property_manager.permissions import IsOwnerOrReadOnly
 
 # Create your views here.
@@ -22,7 +24,8 @@ class RegionViewSet(viewsets.ModelViewSet):
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
 
-
-class DistrictViewSet(viewsets.ModelViewSet):
-    queryset = District.objects.all()
-    serializer_class = DistrictSerializer
+    @action(methods=["GET"], detail=True)
+    def districts(self, request, pk=None):
+        region = self.get_object()
+        districts = region.district.all()
+        return Response([DistrictSerializer(district).data for district in districts])
