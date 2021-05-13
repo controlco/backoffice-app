@@ -17,7 +17,8 @@
           "username": "ctcarstens2@uc.cl",
           "email": "ctcarstens2@uc.cl",
           "rut": "2222222",
-          "is_active": "True"
+          "is_active": "True",
+          "password": "123"
         }
       },
       {
