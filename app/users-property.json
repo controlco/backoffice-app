@@ -6,7 +6,8 @@
         "username": "ctcarstens@uc.cl",
         "email": "ctcarstens@uc.cl",
         "rut": "111111",
-        "is_active": "True"
+        "is_active": "True",
+        "password": "123"
       }
     },
     {
@@ -17,6 +18,16 @@
           "email": "ctcarstens2@uc.cl",
           "rut": "2222222",
           "is_active": "True"
+        }
+      },
+      {
+        "model": "accounts.report",
+        "pk": 1,
+        "fields": {
+          "title": "FUNA",
+          "content": "ERA UNA ESTAFA",
+          "owner": 1,
+          "reported_user": 2
         }
       },
       {

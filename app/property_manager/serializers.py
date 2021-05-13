@@ -13,16 +13,15 @@ class PropertySerializer(serializers.ModelSerializer):
 
 
 class DistrictSerializer(serializers.ModelSerializer):
-    property = PropertySerializer(many=True, read_only=True)
+  #  property = PropertySerializer(many=True, read_only=True)
 
     class Meta:
         model = District
-        fields = ['name', 'region', 'property']
+        fields = ['name', 'region']
 
 
 class RegionSerializer(serializers.ModelSerializer):
-    district = DistrictSerializer(many=True, read_only=True)
 
     class Meta:
         model = Region
-        fields = ['name', 'number', 'district']
+        fields = ['name', 'number']
