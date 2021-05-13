@@ -16,12 +16,16 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('id', 'email', 'password', 'profile', 'properties')
+        fields = ('id', 'email', 'password', 'is_owner', 'is_active', 'is_superuser', 'profile', 'properties')
         extra_kwargs = {'password': {'write_only': True}}
         
     def create(self, validated_data):
         profile_data = validated_data.pop('profile')
         user = User.objects.create_user(**validated_data)
+        if user.is_owner == False:
+            user.is_active = True
+            user.save()
+            
         UserProfile.objects.create(
             user=user,
             first_name=profile_data['first_name'],
