@@ -10,4 +10,7 @@ router.register('users', views.UserViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     url(r'^signup', views.UserRegistrationView.as_view()),
+    url(r'^login', views.UserLoginView.as_view()),
+    url(r'^profile', views.UserProfileView.as_view()),
+
 ]
