@@ -5,14 +5,18 @@ from django.urls import reverse
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, password=None, is_owner=False):
+    def create_user(self, email, first_name, last_name, rut, birth_date, password=None, is_owner=False):
 
         if not email:
             raise ValueError('Users Must Have an email address')
 
         user = self.model(
             email=self.normalize_email(email),
-            is_owner=is_owner
+            is_owner=is_owner,
+            first_name=first_name,
+            last_name=last_name,
+            rut=rut,
+            birth_date=birth_date
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -55,13 +59,13 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
-class UserProfile(models.Model):
-    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
-    first_name = models.CharField(max_length=50, unique=False)
-    last_name = models.CharField(max_length=50, unique=False)
-    rut = models.CharField(max_length=10, blank=True, null=True)
-    birth_date = models.DateTimeField(blank=True, null=True)
+# class UserProfile(models.Model):
+#     #id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
+#     first_name = models.CharField(max_length=50, unique=False)
+#     last_name = models.CharField(max_length=50, unique=False)
+#     rut = models.CharField(max_length=10, blank=True, null=True)
+#     birth_date = models.DateTimeField(blank=True, null=True)
 
 class Report(models.Model):
     title = models.CharField(max_length=50, default="Report")
