@@ -27,4 +27,4 @@ class Property(models.Model):
     is_active = models.BooleanField(
         default=False, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')
     district = models.ForeignKey(
-        District, on_delete=models.CASCADE, null=True, related_name="property")
+        District, on_delete=models.CASCADE, related_name="property")

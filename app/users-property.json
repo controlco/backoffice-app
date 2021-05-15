@@ -3,22 +3,24 @@
       "model": "accounts.user",
       "pk": 1,
       "fields": {
-        "username": "ctcarstens@uc.cl",
         "email": "ctcarstens@uc.cl",
         "rut": "111111",
+        "first_name": "Christian",
+        "last_name": "Carstens",
         "is_active": "True",
-        "password": "123"
+        "password": "pbkdf2_sha256$216000$pcD16bXijxBn$Jz+6B2MGO4XH5YxEr7NgrpKKWRiagTXpHIsGhTD2PcA=",
+        "is_owner": true
       }
     },
     {
         "model": "accounts.user",
         "pk": 2,
         "fields": {
-          "username": "ctcarstens2@uc.cl",
           "email": "ctcarstens2@uc.cl",
           "rut": "2222222",
           "is_active": "True",
-          "password": "123"
+          "password": "pbkdf2_sha256$216000$pcD16bXijxBn$Jz+6B2MGO4XH5YxEr7NgrpKKWRiagTXpHIsGhTD2PcA=",
+          "is_owner": false
         }
       },
       {
@@ -36,7 +38,7 @@
         "pk": 1,
         "fields": {
           "title": "Bella casa",
-          "owner": 1,
+          "owner": 2,
           "surface": 10,
           "adress": "Av...",
           "district": 1
@@ -47,7 +49,7 @@
         "pk": 2,
         "fields": {
           "title": "Fea casa",
-          "owner": 2,
+          "owner": 1,
           "surface": 20,
           "adress": "Av...",
           "district": 2

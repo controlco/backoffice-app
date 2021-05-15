@@ -5,7 +5,7 @@ from rest_framework import permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from property_manager.permissions import IsOwnerOrReadOnly
-
+from rest_framework.permissions import AllowAny
 # Create your views here.
 
 
@@ -13,17 +13,16 @@ class PropertyViewSet(viewsets.ModelViewSet):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
 
-    # called when request POST
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    permission_classes = (IsOwnerOrReadOnly, )
 
 
 class RegionViewSet(viewsets.ModelViewSet):
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
+    permission_classes = (AllowAny,)
 
     @action(methods=["GET"], detail=True)
     def districts(self, request, pk=None):
@@ -35,6 +34,7 @@ class RegionViewSet(viewsets.ModelViewSet):
 class DistrictViewSet(viewsets.ModelViewSet):
     queryset = District.objects.all()
     serializer_class = DistrictSerializer
+    permission_classes = (AllowAny,)
 
     @action(methods=["GET"], detail=True)
     def properties(self, request, pk=None):

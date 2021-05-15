@@ -9,44 +9,30 @@ JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
 
-# class UserProfileSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = UserProfile
-#         fields = ('first_name', 'last_name', 'rut', 'birth_date')
-
 class UserSerializer(serializers.ModelSerializer):
-    
+    properties = PropertySerializer(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ('id', 'email','first_name', 'last_name', 'rut', 'birth_date', 'is_owner')
+        fields = ('id', 'email', 'first_name', 'last_name',
+                  'rut', 'birth_date', 'is_owner', 'is_active', 'properties')
+
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
-    properties = PropertySerializer(many=True, read_only=True)
-    #profile = UserSerializer(required=False)
-    
+
     class Meta:
         model = User
-        #fields = ('id', 'email', 'password', 'is_owner', 'is_active', 'is_superuser', 'profile', 'properties')
-        fields = ('id', 'email', 'password', 'is_owner', 'is_active', 'is_superuser', 'first_name', 'last_name', 'rut', 'birth_date', 'properties')
+        fields = ('id', 'email', 'password', 'is_owner', 'is_active',
+                  'first_name', 'last_name', 'rut', 'birth_date')
 
         extra_kwargs = {'password': {'write_only': True}}
-        
+
     def create(self, validated_data):
-        #profile_data = validated_data.pop('profile')
         user = User.objects.create_user(**validated_data)
         if user.is_owner == False:
             user.is_active = True
             user.save()
-            
-        # UserProfile.objects.create(
-        #     user=user,
-        #     first_name=profile_data['first_name'],
-        #     last_name=profile_data['last_name'],
-        #     rut=profile_data['rut'],
-        #     birth_date=profile_data['birth_date'],
-        # )
+
         return user
 
 
@@ -73,15 +59,15 @@ class UserLoginSerializer(serializers.Serializer):
                 'User with given email and password does not exist'
             )
         return {
-            'email':user.email,
+            'email': user.email,
             'token': jwt_token
         }
 
 
 class ReportSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.email')
+    owner_id = serializers.ReadOnlyField(source='owner.id')
 
     class Meta:
         model = Report
-        fields = ["title", "content", "owner", "reported_user"]
-
-
+        fields = ["title", "content", "owner", "owner_id", "reported_user"]

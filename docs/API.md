@@ -4,6 +4,10 @@
 
 Index:
 
+- [User](#region)
+
+  ... Completar Javi y Jose ...
+
 - [Region](#region)
 
   - [GET regions/](#get-regions)
@@ -24,6 +28,51 @@ Index:
 
   - [POST reports/](#post-properties)
   - [GET, PATCH, DELETE reports/{id}/](#get-delete-reportsid)
+
+## [User](#documentación-api)
+
+### GET users/{user_id}/reports/
+
+- Entrega la lista de todas las denuncias realizadas por el usuario:
+
+```
+[
+    {
+        "title": "Estafa 1",
+        "content": "Era una estafa",
+        "owner": 1,
+        "reported_user": 2
+    },
+    {
+        "title": "Estafa 2",
+        "content": "Era una estafa",
+        "owner": 1,
+        "reported_user": 3
+    }
+]
+```
+
+### GET users/{user_id}/properties/
+
+- Entrega la lista de todas las propiedades publicadas por el usuario:
+
+```
+[
+    {
+        "id": 1,
+        "title": "Bella casa",
+        "owner": "ct@uc.cl",
+        "surface": 10,
+        "adress": "Av...",
+        "price": null,
+        "description": null,
+        "latitude": null,
+        "longitude": null,
+        "district": 1,
+        "district_name": "Arica"
+    }
+]
+```
 
 ## [Region](#documentación-api)
 
@@ -349,25 +398,4 @@ Index:
     "owner": 1,
     "reported_user": 2
 }
-```
-
-### GET users/{user_id}/reports/
-
-- Entrega la lista de todas las denuncias realizadas por el usuario:
-
-```
-[
-    {
-        "title": "Estafa 1",
-        "content": "Era una estafa",
-        "owner": 1,
-        "reported_user": 2
-    },
-    {
-        "title": "Estafa 2",
-        "content": "Era una estafa",
-        "owner": 1,
-        "reported_user": 3
-    }
-]
 ```
