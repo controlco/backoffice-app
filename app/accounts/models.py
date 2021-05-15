@@ -1,7 +1,42 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.urls import reverse
 # Create your models here.
+
+
+class UserManager(BaseUserManager):
+
+    def create_user(self, email, password, first_name=None, last_name=None, rut=None, birth_date=None, is_active=False, is_owner=False):
+
+        if not all([email, first_name, last_name, password]):
+            raise ValueError(
+                'Users Must Have an email, password, first name and last name.')
+
+        user = self.model(
+            email=self.normalize_email(email),
+            is_owner=is_owner,
+            first_name=first_name,
+            last_name=last_name,
+            rut=rut,
+            birth_date=birth_date,
+            is_active=is_active
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password):
+
+        if password is None:
+            raise TypeError('Superusers must have a password.')
+
+        user = self.create_user(email, password)
+        user.is_superuser = True
+        user.is_staff = True
+        user.is_active = True
+        user.save(using=self._db)
+
+        return user
 
 
 class User(AbstractUser):
@@ -10,15 +45,16 @@ class User(AbstractUser):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
-        unique=True,
-        blank=False,
-        null=False,
-    )
+        unique=True)
+    username = None
     rut = models.CharField(max_length=10, blank=True, null=True)
     birth_date = models.DateTimeField(blank=True, null=True)
     is_owner = models.BooleanField(default=True)
-    #USERNAME_FIELD = 'email'
+
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    objects = UserManager()
 
     def get_absolute_url(self):
         return reverse('user-detail', args=[str(self.id)])
