@@ -1,58 +1,78 @@
 [
-    {
+  {
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "email": "user@uc.cl",
+      "first_name": "Juan",
+      "last_name": "López",
+      "rut": "11111111-1",
+      "is_active": "True",
+      "password": "123",
+      "is_owner": false
+    }
+  },
+  {
       "model": "accounts.user",
-      "pk": 1,
+      "pk": 2,
       "fields": {
-        "email": "ctcarstens@uc.cl",
-        "rut": "111111",
-        "first_name": "Christian",
-        "last_name": "Carstens",
+        "email": "user2@uc.cl",
+        "rut": "11111111-2",
+        "first_name": "Andrea",
+        "last_name": "Muñoz",
         "is_active": "True",
-        "password": "pbkdf2_sha256$216000$pcD16bXijxBn$Jz+6B2MGO4XH5YxEr7NgrpKKWRiagTXpHIsGhTD2PcA=",
+        "password": "123",
         "is_owner": true
       }
     },
     {
-        "model": "accounts.user",
-        "pk": 2,
-        "fields": {
-          "email": "ctcarstens2@uc.cl",
-          "rut": "2222222",
-          "is_active": "True",
-          "password": "pbkdf2_sha256$216000$pcD16bXijxBn$Jz+6B2MGO4XH5YxEr7NgrpKKWRiagTXpHIsGhTD2PcA=",
-          "is_owner": false
-        }
-      },
-      {
-        "model": "accounts.report",
-        "pk": 1,
-        "fields": {
-          "title": "FUNA",
-          "content": "ERA UNA ESTAFA",
-          "owner": 1,
-          "reported_user": 2
-        }
-      },
-      {
-        "model": "property_manager.Property",
-        "pk": 1,
-        "fields": {
-          "title": "Bella casa",
-          "owner": 2,
-          "surface": 10,
-          "adress": "Av...",
-          "district": 1
-        }
-      },
-      {
-        "model": "property_manager.Property",
-        "pk": 2,
-        "fields": {
-          "title": "Fea casa",
-          "owner": 1,
-          "surface": 20,
-          "adress": "Av...",
-          "district": 2
-        }
+      "model": "accounts.report",
+      "pk": 1,
+      "fields": {
+        "title": "FUNA",
+        "content": "ERA UNA ESTAFA",
+        "owner": 1,
+        "reported_user": 2
       }
+    },
+    {
+      "model": "accounts.report",
+      "pk": 1,
+      "fields": {
+        "title": "Estafador",
+        "content": "Intenta estafar a los dueños",
+        "owner": 2,
+        "reported_user": 1
+      }
+    },
+    {
+      "model": "property_manager.Property",
+      "pk": 1,
+      "fields": {
+        "title": "Bella casa con vista exclusiva",
+        "owner": 2,
+        "surface": 100,
+        "adress": "Av Marco Marini 6622",
+        "price": 1000000,
+        "description": "Casa 5 estrellas",
+        "latitude": "-22.9167",
+        "longitude": "-68.2",
+        "district": 1
+      }
+    },
+    {
+      "model": "property_manager.Property",
+      "pk": 2,
+      "fields": {
+        "title": "Casa en el cerro",
+        "owner": 2,
+        "surface": 20,
+        "adress": "Av Pablo reyes 1231",
+        "price": 100000,
+        "description": "Buena vista al mar",
+        "latitude": "-22.4167",
+        "longitude": "-68.4",
+        "district": 2
+      }
+    }
 ]
