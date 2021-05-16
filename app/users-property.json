@@ -7,8 +7,8 @@
       "first_name": "Juan",
       "last_name": "López",
       "rut": "11111111-1",
-      "is_active": "True",
-      "password": "123",
+      "is_active": true,
+      "password": "pbkdf2_sha256$260000$LtWXw7g3Idd2xUp4vX6H1n$6FVefdXrDEy/rMGY1iWIrrFpEm2HPvKgWxpRCdeJzTM=",
       "is_owner": false
     }
   },
@@ -20,9 +20,20 @@
         "rut": "11111111-2",
         "first_name": "Andrea",
         "last_name": "Muñoz",
-        "is_active": "True",
-        "password": "123",
+        "is_active": true,
+        "password": "pbkdf2_sha256$260000$LtWXw7g3Idd2xUp4vX6H1n$6FVefdXrDEy/rMGY1iWIrrFpEm2HPvKgWxpRCdeJzTM=",
         "is_owner": true
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 3,
+      "fields": {
+        "email": "admin@uc.cl",
+        "password": "pbkdf2_sha256$260000$LtWXw7g3Idd2xUp4vX6H1n$6FVefdXrDEy/rMGY1iWIrrFpEm2HPvKgWxpRCdeJzTM=",
+        "is_superuser": true,
+        "is_active": true,
+        "is_staff": true
       }
     },
     {
@@ -37,7 +48,7 @@
     },
     {
       "model": "accounts.report",
-      "pk": 1,
+      "pk": 2,
       "fields": {
         "title": "Estafador",
         "content": "Intenta estafar a los dueños",
