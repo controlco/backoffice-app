@@ -6,21 +6,25 @@ from django.urls import reverse
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, password, first_name=None, last_name=None, rut=None, birth_date=None, is_active=False, is_owner=False):
+    def create_user(self, email, password, is_superuser=False, first_name=None, last_name=None, rut=None, birth_date=None, is_active=False, is_owner=False):
 
-        if not all([email, first_name, last_name, password]):
-            raise ValueError(
-                'Users Must Have an email, password, first name and last name.')
-
-        user = self.model(
-            email=self.normalize_email(email),
-            is_owner=is_owner,
-            first_name=first_name,
-            last_name=last_name,
-            rut=rut,
-            birth_date=birth_date,
-            is_active=is_active
-        )
+        if is_superuser:
+            user = self.model(
+                email=self.normalize_email(email)
+            )
+        else:
+            if not all([email, first_name, last_name, password]):
+                raise ValueError(
+                    'Users Must Have an email, password, first name and last name.')
+            user = self.model(
+                email=self.normalize_email(email),
+                is_owner=is_owner,
+                first_name=first_name,
+                last_name=last_name,
+                rut=rut,
+                birth_date=birth_date,
+                is_active=is_active
+            )
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -30,7 +34,8 @@ class UserManager(BaseUserManager):
         if password is None:
             raise TypeError('Superusers must have a password.')
 
-        user = self.create_user(email, password)
+        user = self.create_user(
+            email=email, password=password, is_superuser=True)
         user.is_superuser = True
         user.is_staff = True
         user.is_active = True

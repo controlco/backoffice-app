@@ -31,6 +31,76 @@ Index:
 
 ## [User](#documentación-api)
 
+### POST signup/
+
+- Registrarse:
+
+```
+{
+    "email": "new_user@gmail.com",
+    "password": "123",
+    "first_name": "Nombre",
+    "last_name": "Apellido"
+}
+```
+
+- Retorna:
+
+```
+{
+    "success": "True",
+    "status code": 201,
+    "message": "User registered  successfully"
+}
+```
+
+### POST login/
+
+- Iniciar sesión:
+
+```
+{
+    "email": "new_user@gmail.com",
+    "password": "123"
+}
+```
+
+- Retorna:
+
+```
+{
+    "success": "True",
+    "status code": 200,
+    "message": "User logged in successfully",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6Im5ld191c2VyQGdtYWlsLmNvbSIsImV4cCI6MTYyMzcyNzYzNSwiZW1haWwiOiJuZXdfdXNlckBnbWFpbC5jb20ifQ.jn2gWgcXEGYP3ppOqE3cvCK94kX--YKv5R8yAaYnbIE"
+}
+```
+
+### PATCH users/{user_id}/
+
+- Actualiza la información del usuario. Si se actualiza el email, se debe hacer login nuevamente luego.
+
+```
+{
+    "first_name": "Nombre Actualizado"
+}
+```
+
+- Retorna:
+
+```
+{
+    "id": 6,
+    "email": "new_user@gmail.com",
+    "first_name": "Nombre Actualizado",
+    "last_name": "Apellido",
+    "rut": 111111,
+    "birth_date": null,
+    "is_owner": false,
+    "is_active": true
+}
+```
+
 ### GET users/{user_id}/reports/
 
 - Entrega la lista de todas las denuncias realizadas por el usuario:
@@ -38,15 +108,17 @@ Index:
 ```
 [
     {
-        "title": "Estafa 1",
-        "content": "Era una estafa",
-        "owner": 1,
+        "title": "FUNA",
+        "content": "ERA UNA ESTAFA",
+        "owner": "user@uc.cl",
+        "owner_id": 1,
         "reported_user": 2
     },
     {
-        "title": "Estafa 2",
-        "content": "Era una estafa",
-        "owner": 1,
+        "title": "FUNA 2",
+        "content": "ERA UNA ESTAFA",
+        "owner": "user@uc.cl",
+        "owner_id": 1,
         "reported_user": 3
     }
 ]
@@ -60,16 +132,29 @@ Index:
 [
     {
         "id": 1,
-        "title": "Bella casa",
-        "owner": "ct@uc.cl",
-        "surface": 10,
-        "adress": "Av...",
-        "price": null,
-        "description": null,
-        "latitude": null,
-        "longitude": null,
+        "title": "Bella casa con vista exclusiva",
+        "owner": "user2@uc.cl",
+        "surface": 100,
+        "adress": "Av Marco Marini 6622",
+        "price": 1000000,
+        "description": "Casa 5 estrellas",
+        "latitude": "-22.9167",
+        "longitude": "-68.2",
         "district": 1,
         "district_name": "Arica"
+    },
+    {
+        "id": 2,
+        "title": "Casa en el cerro",
+        "owner": "user2@uc.cl",
+        "surface": 20,
+        "adress": "Av Pablo reyes 1231",
+        "price": 100000,
+        "description": "Buena vista al mar",
+        "latitude": "-22.4167",
+        "longitude": "-68.4",
+        "district": 2,
+        "district_name": "Camarones"
     }
 ]
 ```
@@ -232,14 +317,17 @@ Index:
 ```
 [
     {
-        "title": "Bella casa",
-        "owner": "ctcarstens@uc.cl",
-        "surface": 10,
-        "adress": "Av...",
-        "price": null,
-        "description": null,
-        "latitude": null,
-        "longitude": null
+        "id": 1,
+        "title": "Bella casa con vista exclusiva",
+        "owner": "user2@uc.cl",
+        "surface": 100,
+        "adress": "Av Marco Marini 6622",
+        "price": 1000000,
+        "description": "Casa 5 estrellas",
+        "latitude": "-22.9167",
+        "longitude": "-68.2",
+        "district": 1,
+        "district_name": "Arica"
     }
 ]
 ```
@@ -253,24 +341,30 @@ Index:
 ```
 [
     {
-        "title": "Bella casa",
-        "owner": "ctcarstens@uc.cl",
-        "surface": 10,
-        "adress": "Av...",
-        "price": null,
-        "description": null,
-        "latitude": null,
-        "longitude": null
+        "id": 1,
+        "title": "Bella casa con vista exclusiva",
+        "owner": "user2@uc.cl",
+        "surface": 100,
+        "adress": "Av Marco Marini 6622",
+        "price": 1000000,
+        "description": "Casa 5 estrellas",
+        "latitude": "-22.9167",
+        "longitude": "-68.2",
+        "district": 1,
+        "district_name": "Arica"
     },
     {
-        "title": "Fea casa",
-        "owner": "ctcarstens2@uc.cl",
+        "id": 2,
+        "title": "Casa en el cerro",
+        "owner": "user2@uc.cl",
         "surface": 20,
-        "adress": "Av...",
-        "price": null,
-        "description": null,
-        "latitude": null,
-        "longitude": null
+        "adress": "Av Pablo reyes 1231",
+        "price": 100000,
+        "description": "Buena vista al mar",
+        "latitude": "-22.4167",
+        "longitude": "-68.4",
+        "district": 2,
+        "district_name": "Camarones"
     }
 ]
 ```
@@ -349,7 +443,6 @@ Index:
 {
     "title": "Estafa",
     "content": "Era una estafa",
-    "owner": 1,
     "reported_user": 2
 }
 ```
@@ -360,7 +453,8 @@ Index:
 {
     "title": "Estafa",
     "content": "Era una estafa",
-    "owner": 1,
+    "owner": "new_user@gmail.com",
+    "owner_id": 6,
     "reported_user": 2
 }
 ```
@@ -373,7 +467,8 @@ Index:
 {
     "title": "Estafa",
     "content": "Era una estafa",
-    "owner": 1,
+    "owner": "new_user@gmail.com",
+    "owner_id": 6,
     "reported_user": 2
 }
 ```
@@ -382,9 +477,9 @@ Index:
 
 ```
 {
-    "title": "Estafa NUEVA",
+    "title": "Estafa Actualizada",
     "content": "Era una estafa",
-    "owner": 1,
+    "owner": "new_user@gmail.com",
     "reported_user": 2
 }
 ```
@@ -393,9 +488,10 @@ Index:
 
 ```
 {
-    "title": "Estafa NUEVA",
+    "title": "Estafa Actualizada",
     "content": "Era una estafa",
-    "owner": 1,
+    "owner": "new_user@gmail.com",
+    "owner_id": 6,
     "reported_user": 2
 }
 ```
