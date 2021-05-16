@@ -4,9 +4,11 @@
 
 Index:
 
-- [User](#region)
+- [User](#user)
 
-  ... Completar Javi y Jose ...
+  - [POST signup/](#post-signup)
+  - [POST login/](#post-login)
+  - [PATCH users/{user-id}/](#patch-userid)
 
 - [Region](#region)
 
