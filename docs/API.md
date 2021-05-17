@@ -44,7 +44,7 @@ Index:
     "first_name": "Nombre",
     "last_name": "Apellido",
     "rut": "rut",
-    "is_owner": Bool (true en web, false en mobile),
+    "is_owner": bool (true en web, false en mobile),
     "birth_date": "YYYY-MM-DDTHH:MM:SS" (ej: "2019-02-03T06:48:07")
 }
 ```
@@ -84,18 +84,9 @@ Index:
 ### PATCH users/{user_id}/
 
 - Actualiza la información del usuario. Si se actualiza el email, se debe hacer login nuevamente.
-- Deben enviarse todos los campos con la información actualizada (con o sin cambios). Esto es sólo temporal.
-
 ```
 {
-    "id": 6,
-    "email": "new_user@gmail.com",
     "first_name": "Nombre Actualizado",
-    "last_name": "Apellido",
-    "rut": 111111,
-    "birth_date": null,
-    "is_owner": false,
-    "is_active": true
 }
 ```
 
