@@ -190,3 +190,7 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=15),
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "https://localhost:3000",
+]
