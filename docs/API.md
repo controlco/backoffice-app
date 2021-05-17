@@ -42,7 +42,10 @@ Index:
     "email": "new_user@gmail.com",
     "password": "123",
     "first_name": "Nombre",
-    "last_name": "Apellido"
+    "last_name": "Apellido",
+    "rut": "rut",
+    "is_owner": bool (true en web, false en mobile),
+    "birth_date": "YYYY-MM-DDTHH:MM:SS" (ej: "2019-02-03T06:48:07")
 }
 ```
 
@@ -80,11 +83,10 @@ Index:
 
 ### PATCH users/{user_id}/
 
-- Actualiza la información del usuario. Si se actualiza el email, se debe hacer login nuevamente luego.
-
+- Actualiza la información del usuario. Si se actualiza el email, se debe hacer login nuevamente.
 ```
 {
-    "first_name": "Nombre Actualizado"
+    "first_name": "Nombre Actualizado",
 }
 ```
 
