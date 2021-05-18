@@ -1,5 +1,40 @@
 # Django API
 
+## Comenzar a desarrollar
+
+Una vez todos los ambientes señalados en lso ítems de abajo seteados, correr los siguientes comandos:
+
+En caso de haber cambios, por ejemplo, en requirements.txt:
+
+```
+docker-compose build
+```
+
+Levantar los contenedores:
+
+```
+docker-compose up
+```
+
+Para migrar la base de datos:
+
+```
+docker-compose run web python manage.py migrate
+```
+
+Para poblar las seeds base:
+
+```
+docker-compose run web python manage.py loaddata regions-districts.json users-property.json
+```
+
+Para poblar las seeds producidas con faker:
+(Opcionalmente se puede utilizar el parámetro --n, donde n es el número de entidades a crear)
+
+```
+docker.compose run web python manage.py seeds
+```
+
 Backend para la Administración de Propiedades.
 
 ## Requisitos
