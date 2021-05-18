@@ -8,7 +8,9 @@ Index:
 
   - [POST signup/](#post-signup)
   - [POST login/](#post-login)
-  - [PATCH users/{user-id}/](#patch-userid)
+  - [GET, PATCH users/{user-id}/](#patch-userid)
+  - [GET users/{user_id}/properties/](#get-usersproperty_idproperties)
+  - [GET users/{user_id}/reports/](#get-usersreport_idreports)
 
 - [Region](#region)
 
@@ -35,7 +37,7 @@ Index:
 
 ### POST signup/
 
-- Registrarse:
+- Registrarse. Notar que el atributo 'is_owner', toma valor true en aplicación web (propietarios), y false en mobile.
 
 ```
 {
@@ -44,8 +46,8 @@ Index:
     "first_name": "Nombre",
     "last_name": "Apellido",
     "rut": "rut",
-    "is_owner": bool (true en web, false en mobile),
-    "birth_date": "YYYY-MM-DDTHH:MM:SS" (ej: "2019-02-03T06:48:07")
+    "is_owner": true,
+    "birth_date": "2019-02-03T06:48:07"
 }
 ```
 
@@ -81,12 +83,30 @@ Index:
 }
 ```
 
+### GET users/{user_id}/
+
+- Obtiene la información de un usuario:
+
+```
+{
+    "id": 6,
+    "email": "new_user@gmail.com",
+    "first_name": "Nombre",
+    "last_name": "Apellido",
+    "rut": 111111,
+    "birth_date": null,
+    "is_owner": false,
+    "is_active": true
+}
+```
+
 ### PATCH users/{user_id}/
 
 - Actualiza la información del usuario. Si se actualiza el email, se debe hacer login nuevamente.
+
 ```
 {
-    "first_name": "Nombre Actualizado",
+    "first_name": "Nombre Actualizado"
 }
 ```
 
@@ -137,6 +157,7 @@ Index:
     {
         "id": 1,
         "title": "Bella casa con vista exclusiva",
+        "owner_id": 2,
         "owner": "user2@uc.cl",
         "surface": 100,
         "adress": "Av Marco Marini 6622",
@@ -150,6 +171,7 @@ Index:
     {
         "id": 2,
         "title": "Casa en el cerro",
+        "owner_id": 2,
         "owner": "user2@uc.cl",
         "surface": 20,
         "adress": "Av Pablo reyes 1231",
@@ -310,7 +332,7 @@ Index:
     {
         "name": "Colchane",
         "region": 1
-    },
+    }
 ]
 ```
 
@@ -324,6 +346,7 @@ Index:
         "id": 1,
         "title": "Bella casa con vista exclusiva",
         "owner": "user2@uc.cl",
+        "owner_id": 2,
         "surface": 100,
         "adress": "Av Marco Marini 6622",
         "price": 1000000,
@@ -348,6 +371,7 @@ Index:
         "id": 1,
         "title": "Bella casa con vista exclusiva",
         "owner": "user2@uc.cl",
+        "owner_id": 2,
         "surface": 100,
         "adress": "Av Marco Marini 6622",
         "price": 1000000,
@@ -361,6 +385,7 @@ Index:
         "id": 2,
         "title": "Casa en el cerro",
         "owner": "user2@uc.cl",
+        "owner_id": 2,
         "surface": 20,
         "adress": "Av Pablo reyes 1231",
         "price": 100000,

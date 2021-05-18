@@ -20,9 +20,10 @@ class RegionSerializer(serializers.ModelSerializer):
 
 class PropertySerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.email')
+    owner_id = serializers.ReadOnlyField(source='owner.id')
     district_name = serializers.ReadOnlyField(source='district.name')
 
     class Meta:
         model = Property
-        fields = ['id', 'title', 'owner', 'surface', 'adress',
+        fields = ['id', 'title', 'owner_id', 'owner', 'surface', 'adress',
                   'price', 'description', 'latitude', 'longitude', 'district', 'district_name']
