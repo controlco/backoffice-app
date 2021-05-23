@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('property_manager.urls')),
     path('', include('accounts.urls')),
+    path('', include('chat.urls')),
     path('token/', jwt_views.TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
