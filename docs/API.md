@@ -12,6 +12,15 @@ Index:
   - [GET users/{user_id}/properties/](#get-usersproperty_idproperties)
   - [GET users/{user_id}/reports/](#get-usersreport_idreports)
 
+- [Message](#message)
+
+  - [GET users/{user_id}/messages/](#get-messages)
+  - [GET users/{user_id}/messages/sent/](#get-messagessent)
+  - [GET users/{user_id}/messages/received/](#get-messagesreceived)
+  - [GET, PATCH users/{user_id}/messages/{message_id}/](#patch-messages)
+  - [POST users/{user_id}/messages/](#post-messages)
+  - [PATCH users/{user_id}/messages/{message_id}/read/](#patch-messagesread)
+
 - [Region](#region)
 
   - [GET regions/](#get-regions)
@@ -183,6 +192,171 @@ Index:
         "district_name": "Camarones"
     }
 ]
+```
+
+## [Message](#documentación-api)
+
+### GET users/{user_id}/messages/
+
+- Entrega la lista de todos los mensajes intercambiados por {user_id} y el usuario que envía la request:
+
+```
+[
+    {
+        "id": 1,
+        "subject": "[Sin Asunto]",
+        "content": "Hola!",
+        "from_user_email": "user@uc.cl",
+        "from_user_id": 1,
+        "to_user_email": "user2@uc.cl",
+        "to_user_id": 2,
+        "read": false
+    },
+    {
+        "id": 2,
+        "subject": "[Sin Asunto]",
+        "content": "Cómo estay?",
+        "from_user_email": "user2@uc.cl",
+        "from_user_id": 2,
+        "to_user_email": "user@uc.cl",
+        "to_user_id": 1,
+        "read": false
+    }
+]
+```
+
+### GET users/{user_id}/messages/sent/
+
+- Entrega la lista de todos los mensajes que {user_id} ha enviado:
+
+```
+[
+    {
+        "id": 1,
+        "subject": "[Sin Asunto]",
+        "content": "Hola!",
+        "from_user_email": "user@uc.cl",
+        "from_user_id": 1,
+        "to_user_email": "user2@uc.cl",
+        "to_user_id": 2,
+        "read": false
+    }
+]
+```
+
+### GET users/{user_id}/messages/sent/
+
+- Entrega la lista de todos los mensajes que {user_id} ha recibido:
+
+```
+[
+    {
+        "id": 2,
+        "subject": "[Sin Asunto]",
+        "content": "Cómo estay?",
+        "from_user_email": "user2@uc.cl",
+        "from_user_id": 2,
+        "to_user_email": "user@uc.cl",
+        "to_user_id": 1,
+        "read": false
+    }
+]
+```
+
+### GET users/{user_id}/messages/{message_id}/
+
+- Entrega los detalles del mensaje.
+  No importa el valor de {user_id}, pues se podrá hacer la request solo si el mensaje le pertenece (o es el receptor) al usuario que realiza la request, por lo que si el {message_id} le pertenece, es válida:
+
+```
+{
+    "id": 1,
+    "subject": "[Sin Asunto]",
+    "content": "Hola!",
+    "from_user_email": "user@uc.cl",
+    "from_user_id": 1,
+    "to_user_email": "user2@uc.cl",
+    "to_user_id": 2,
+    "read": false
+}
+```
+
+### PATCH users/{user_id}/messages/{message_id}/
+
+- Actualiza los detalles del mensaje. No importa el valor de {user_id}, pues se podrá hacer la request solo si el mensaje le pertenece al usuario que realiza la request, por lo que si el {message_id} le pertenece, es válida:
+
+```
+{
+    "subject": "Asunto actualizado",
+    "content": "Hola!"
+}
+```
+
+- Retorna:
+
+```
+{
+    "id": 1,
+    "subject": "Asunto actualizado",
+    "content": "Hola!",
+    "from_user_email": "user@uc.cl",
+    "from_user_id": 1,
+    "to_user_email": "user2@uc.cl",
+    "to_user_id": 2,
+    "read": false
+}
+```
+
+### POST users/{user_id}/messages/
+
+- Crea un nuevo mensaje. No importa el valor de {user_id}:
+
+```
+{
+    "subject": "Asunto No vacío",
+    "content": "Nuevo mensaje!",
+    "to_user": 2
+}
+```
+
+- Retorna:
+
+```
+{
+    "id": 4,
+    "subject": "Asunto No vacío",
+    "content": "Nuevo mensaje!",
+    "from_user_email": "user@uc.cl",
+    "from_id": 1,
+    "to_user_email": "user2@uc.cl",
+    "to_user": 2,
+    "read": false
+}
+```
+
+### PATCH users/{user_id}/messages/{message_id}/read/
+
+- Actualiza el valor del atribudo 'read' de un mensaje. No importa el valor de {user_id}:
+
+```
+{
+    "read": true
+}
+```
+
+- Retorna:
+
+```
+{
+    "id": 1,
+    "subject": "Saludo",
+    "content": "Hola!",
+    "from_user_email": "user@uc.cl",
+    "from_id": 1,
+    "to_user_email": "user2@uc.cl",
+    "to_user": 2,
+    "read": true
+}
 ```
 
 ## [Region](#documentación-api)

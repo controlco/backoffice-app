@@ -6,6 +6,7 @@ from django.conf.urls import url
 router = DefaultRouter()
 router.register('reports', views.ReportViewSet)
 router.register('users', views.UserViewSet)
+router.register('', views.UserViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -35,14 +35,13 @@ SECRET_KEY = 'django-insecure-&@f*f4^b45)_pc9q^(so(#70ru6q3g84v_w2_i)@(x)ut=0=z-
 DEBUG = True
 
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'property_manager',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,8 +51,8 @@ INSTALLED_APPS = [
     'corsheaders'
 ]
 
-ALLOWED_HOSTS=['*']
-               
+ALLOWED_HOSTS = ['*']
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
@@ -200,4 +199,3 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "https://localhost:3000",
 ]
-
