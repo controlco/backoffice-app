@@ -38,6 +38,11 @@ class MessageViewSet(viewsets.ModelViewSet):
     @ action(methods=["PATCH"], detail=True, url_path="read")
     def update_read(self, request, user_pk, pk=None):
         m = Message.objects.get(pk=pk)
+        if m.to_user.id != request.user.id:
+            return Response(
+                {"detail": "Only the receiver can update read status."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
         if not all(["read" == k for k in request.data]) or not (request.data["read"] == True or request.data["read"] == False):
             return Response(
                 {"detail": "Data must be \"read\" = true or \"read\" = false."},
