@@ -28,3 +28,7 @@ class Property(models.Model):
         default=False, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')
     district = models.ForeignKey(
         District, on_delete=models.CASCADE, related_name="property")
+    electricity_service = models.BooleanField(
+        default=False, help_text='Designates whether this property has electricity service. Unselect this instead of deleting accounts.', verbose_name='electricity')
+    water_service = models.BooleanField(
+        default=False, help_text='Designates whether this property has drinking water service. Unselect this instead of deleting accounts.', verbose_name='water')

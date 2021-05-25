@@ -175,7 +175,9 @@ Index:
         "latitude": "-22.9167",
         "longitude": "-68.2",
         "district": 1,
-        "district_name": "Arica"
+        "district_name": "Arica",
+        "electricity_service": false,
+        "water_service": false
     },
     {
         "id": 2,
@@ -189,7 +191,9 @@ Index:
         "latitude": "-22.4167",
         "longitude": "-68.4",
         "district": 2,
-        "district_name": "Camarones"
+        "district_name": "Camarones",
+        "electricity_service": false,
+        "water_service": false
     }
 ]
 ```
@@ -528,7 +532,9 @@ Index:
         "latitude": "-22.9167",
         "longitude": "-68.2",
         "district": 1,
-        "district_name": "Arica"
+        "district_name": "Arica",
+        "electricity_service": false,
+        "water_service": false
     }
 ]
 ```
@@ -553,7 +559,9 @@ Index:
         "latitude": "-22.9167",
         "longitude": "-68.2",
         "district": 1,
-        "district_name": "Arica"
+        "district_name": "Arica",
+        "electricity_service": false,
+        "water_service": false
     },
     {
         "id": 2,
@@ -567,7 +575,9 @@ Index:
         "latitude": "-22.4167",
         "longitude": "-68.4",
         "district": 2,
-        "district_name": "Camarones"
+        "district_name": "Camarones",
+        "electricity_service": false,
+        "water_service": false
     }
 ]
 ```
@@ -596,7 +606,9 @@ Index:
     "price": null,
     "description": null,
     "latitude": null,
-    "longitude": null
+    "longitude": null,
+    "electricity_service": false,
+    "water_service": false
 }
 ```
 
@@ -627,7 +639,9 @@ Index:
     "price": null,
     "description": "NUEVA DESCRIPCIÓN",
     "latitude": null,
-    "longitude": null
+    "longitude": null,
+    "electricity_service": false,
+    "water_service": false
 }
 ```
 
