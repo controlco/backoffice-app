@@ -42,6 +42,11 @@ Index:
   - [POST reports/](#post-properties)
   - [GET, PATCH, DELETE reports/{id}/](#get-delete-reportsid)
 
+- [Image](#image)
+
+- [GET images/](#get-images)
+- [POST images/](#post-images)
+
 ## [User](#documentación-api)
 
 ### POST signup
@@ -556,7 +561,21 @@ Index:
         "district": 1,
         "district_name": "Arica",
         "electricity_service": false,
-        "water_service": false
+        "water_service": false,
+        "property_images": [
+            {
+                "id": 1,
+                "title": "Casa principal",
+                "cover": "http://localhost:8000/media/images/house.jpeg",
+                "property": 1
+            },
+            {
+                "id": 3,
+                "title": "Piscina",
+                "cover": "http://localhost:8000/media/images/piscina_BRXLVGC.jpeg",
+                "property": 1
+            }
+        ]
     }
 ]
 ```
@@ -583,7 +602,15 @@ Index:
         "district": 1,
         "district_name": "Arica",
         "electricity_service": false,
-        "water_service": false
+        "water_service": false,
+        "property_images": [
+            {
+                "id": 7,
+                "title": "casa 2",
+                "cover": "http://localhost:8000/media/images/house_JOQ51vI.jpeg",
+                "property": 2
+            }
+        ]
     },
     {
         "id": 2,
@@ -599,7 +626,15 @@ Index:
         "district": 2,
         "district_name": "Camarones",
         "electricity_service": false,
-        "water_service": false
+        "water_service": false,
+        "property_images": [
+            {
+                "id": 7,
+                "title": "casa 2",
+                "cover": "http://localhost:8000/media/images/house_JOQ51vI.jpeg",
+                "property": 2
+            }
+        ]
     }
 ]
 ```
@@ -630,7 +665,8 @@ Index:
     "latitude": null,
     "longitude": null,
     "electricity_service": false,
-    "water_service": false
+    "water_service": false,
+    "property_images": []
 }
 ```
 
@@ -663,7 +699,8 @@ Index:
     "latitude": null,
     "longitude": null,
     "electricity_service": false,
-    "water_service": false
+    "water_service": false,
+    "property_images": []
 }
 ```
 
@@ -736,6 +773,7 @@ Index:
 ```
 
 ## [Image](#documentación-api)
+
 ### GET images/
 - Entrega la lista de todas las imagenes:
 ```
