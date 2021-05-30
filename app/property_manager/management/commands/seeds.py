@@ -1,5 +1,8 @@
 from django.core.management.base import BaseCommand
 from app.factories import UserFactory, PropertyFactory, ReportFactory
+from random import choice
+from accounts.models import User, Report
+from property_manager.models import Property, District
 
 
 class Command(BaseCommand):
@@ -14,5 +17,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for _ in range(options['n']):
             UserFactory.create()
-            PropertyFactory.create()
-            ReportFactory.create()
+            PropertyFactory.create(owner=choice(
+                User.objects.all()), district=choice(District.objects.all()))
+            ReportFactory.create(owner=choice(
+                User.objects.all()), reported_user=choice(list(User.objects.all())))
