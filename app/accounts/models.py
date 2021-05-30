@@ -77,3 +77,7 @@ class Report(models.Model):
         User, on_delete=models.CASCADE, related_name="from_report")
     reported_user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="to_report")
+    
+    def __str__(self):
+        return self.title
+    

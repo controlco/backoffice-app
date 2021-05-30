@@ -177,7 +177,21 @@ Index:
         "district": 1,
         "district_name": "Arica",
         "electricity_service": false,
-        "water_service": false
+        "water_service": false,
+        "property_images": [
+            {
+                "id": 1,
+                "title": "Casa principal",
+                "cover": "http://localhost:8000/media/images/house.jpeg",
+                "property": 1
+            },
+            {
+                "id": 3,
+                "title": "Piscina",
+                "cover": "http://localhost:8000/media/images/piscina_BRXLVGC.jpeg",
+                "property": 1
+            }
+        ]
     },
     {
         "id": 2,
@@ -193,7 +207,15 @@ Index:
         "district": 2,
         "district_name": "Camarones",
         "electricity_service": false,
-        "water_service": false
+        "water_service": false,
+        "property_images": [
+            {
+                "id": 7,
+                "title": "casa 2",
+                "cover": "http://localhost:8000/media/images/house_JOQ51vI.jpeg",
+                "property": 2
+            }
+        ]
     }
 ]
 ```
@@ -710,5 +732,49 @@ Index:
     "owner": "new_user@gmail.com",
     "owner_id": 6,
     "reported_user": 2
+}
+```
+
+## [Image](#documentación-api)
+### GET images/
+- Entrega la lista de todas las imagenes:
+```
+[
+    {
+        "id": 1,
+        "title": "Casa principal",
+        "cover": "http://localhost:8000/media/images/house.jpeg",
+        "property": 1
+    },
+    {
+        "id": 3,
+        "title": "Piscina",
+        "cover": "http://localhost:8000/media/images/piscina_BRXLVGC.jpeg",
+        "property": 1
+    },
+    {
+        "id": 7,
+        "title": "casa 2",
+        "cover": "http://localhost:8000/media/images/house_JOQ51vI.jpeg",
+        "property": 2
+    }
+]
+```
+### POST images/
+- Crea una nueva imagen asociada a una propiedad, para tener el atributo "cover" se debe subir una imagen:
+```
+{
+ "title":"Casa",
+ "cover":<uploaded image>,
+ "property": 1
+}
+```
+- Retorna:
+
+```
+{
+    "title": "casa",
+    "cover": "http://localhost:8000/media/images/piscina_BRXLVGC.jpeg",
+    "property": 1
 }
 ```
