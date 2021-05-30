@@ -1,1 +1,1 @@
-web: gunicorn app.wsgi:application
+web: gunicorn --reload app.wsgi:application --log-file -
