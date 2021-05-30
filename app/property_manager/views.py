@@ -1,10 +1,10 @@
-from property_manager.serializers import PropertySerializer, RegionSerializer, DistrictSerializer
+from property_manager.serializers import PropertySerializer, RegionSerializer, DistrictSerializer, ImageSerializer
 from rest_framework import viewsets
-from property_manager.models import Property, Region, District
+from property_manager.models import Property, Region, District, Image
 from rest_framework import permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from property_manager.permissions import IsOwnerOrReadOnly
+from property_manager.permissions import IsOwnerOrReadOnly, IsPropertyOwnerOrReadOnly
 from rest_framework.permissions import AllowAny
 # Create your views here.
 
@@ -12,11 +12,28 @@ from rest_framework.permissions import AllowAny
 class PropertyViewSet(viewsets.ModelViewSet):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
+    
+    permission_classes = (IsOwnerOrReadOnly, )
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+    
+    # @action(methods=["POST"], detail=True, permission_classes=[IsPropertyOwnerOrReadOnly])
+    # def images(self, request, pk=None):
+    #     property = self.get_object()
+    #     title = self.request.data["title"]
+    #     cover = self.request.data["cover"]
+    #     image = Image.objects.create(title=title, cover=cover, property=property)
+    #     return Response(ImageSerializer(image).data)
 
-    permission_classes = (IsOwnerOrReadOnly, )
+    
+
+class ImageViewSet(viewsets.ModelViewSet):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
+
+    #permission_classes = (IsPropertyOwnerOrReadOnly, )
+    permission_classes = (AllowAny, )
 
 
 class RegionViewSet(viewsets.ModelViewSet):
