@@ -44,7 +44,7 @@ Index:
 
 ## [User](#documentación-api)
 
-### POST signup/
+### POST signup
 
 - Registrarse. Notar que el atributo 'is_owner', toma valor true en aplicación web (propietarios), y false en mobile.
 
@@ -70,7 +70,7 @@ Index:
 }
 ```
 
-### POST login/
+### POST login
 
 - Iniciar sesión:
 

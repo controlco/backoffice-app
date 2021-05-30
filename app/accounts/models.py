@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.urls import reverse
+from rest_framework import serializers
+
 # Create your models here.
 
 
@@ -14,7 +16,7 @@ class UserManager(BaseUserManager):
             )
         else:
             if not all([email, first_name, last_name, password]):
-                raise ValueError(
+                raise serializers.ValidationError(
                     'Users Must Have an email, password, first name and last name.')
             user = self.model(
                 email=self.normalize_email(email),

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import django_heroku
 
 import environ
 import os
@@ -200,5 +201,9 @@ CORS_ALLOWED_ORIGINS = [
     "https://localhost:3000",
 ]
 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+django_heroku.settings(locals())
+
