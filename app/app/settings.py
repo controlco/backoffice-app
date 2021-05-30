@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import django_heroku
 
 import environ
 import os
@@ -199,3 +200,5 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "https://localhost:3000",
 ]
+
+django_heroku.settings(locals())
