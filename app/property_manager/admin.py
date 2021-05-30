@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Property
+from .models import Property, Image
 # admin.site.register(Property)
 
 
@@ -11,3 +11,4 @@ class PropertyAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Property, PropertyAdmin)
+admin.site.register(Image)

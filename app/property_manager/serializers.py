@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from accounts.models import User
-from property_manager.models import Property, Region, District
+from property_manager.models import Property, Region, District, Image
 
 
 class DistrictSerializer(serializers.ModelSerializer):
@@ -17,14 +17,24 @@ class RegionSerializer(serializers.ModelSerializer):
         model = Region
         fields = ['name', 'number']
 
+class ImageSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Image
+        fields = ['id', 'title', 'cover', 'property']
 
 class PropertySerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.email')
     owner_id = serializers.ReadOnlyField(source='owner.id')
     district_name = serializers.ReadOnlyField(source='district.name')
+    property_images = ImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Property
         fields = ['id', 'title', 'owner_id', 'owner', 'surface', 'adress',
                   'price', 'description', 'latitude', 'longitude', 'district',
-                  'district_name', 'electricity_service', 'water_service']
+                  'district_name', 'electricity_service', 'water_service', 'property_images']
+
+
+    
+    
