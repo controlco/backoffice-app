@@ -6,12 +6,18 @@ from accounts.models import User
 class Region(models.Model):
     name = models.TextField()
     number = models.PositiveIntegerField(primary_key=True)
+    
+    def __str__(self):
+        return self.name
 
 
 class District(models.Model):
     name = models.TextField()
     region = models.ForeignKey(
         Region, on_delete=models.CASCADE, related_name="district")
+    
+    def __str__(self):
+        return self.name
 
 
 class Property(models.Model):
@@ -32,3 +38,14 @@ class Property(models.Model):
         default=False, help_text='Designates whether this property has electricity service. Unselect this instead of deleting accounts.', verbose_name='electricity')
     water_service = models.BooleanField(
         default=False, help_text='Designates whether this property has drinking water service. Unselect this instead of deleting accounts.', verbose_name='water')
+    
+    def __str__(self):
+        return self.title
+
+class Image(models.Model):
+    title = models.TextField()
+    cover = models.ImageField(upload_to='images/')
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE, related_name="property_images")
+    def __str__(self):
+        return self.cover.url

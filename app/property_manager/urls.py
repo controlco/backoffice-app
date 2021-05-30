@@ -6,6 +6,7 @@ router = DefaultRouter()
 router.register('properties', views.PropertyViewSet)
 router.register('regions', views.RegionViewSet)
 router.register('districts', views.DistrictViewSet)
+router.register('images', views.ImageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
