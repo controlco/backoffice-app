@@ -1,7 +1,7 @@
 from accounts.serializers import UserSerializer, ReportSerializer, UserRegistrationSerializer, UserLoginSerializer
 from rest_framework import viewsets, status
 from accounts.models import User, Report
-from rest_framework import permissions
+from rest_framework import permissions, serializers
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 from accounts.permissions import IsMyOrReadOnly, IsOwner
