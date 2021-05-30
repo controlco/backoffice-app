@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User
+from .models import User, Report
 #admin.site.register(User)
 
 class UserAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class UserAdmin(admin.ModelAdmin):
     list_filter = ('is_active',)
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Report)
