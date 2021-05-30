@@ -32,7 +32,7 @@ Para poblar las seeds producidas con faker:
 (Opcionalmente se puede utilizar el parámetro --n, donde n es el número de entidades a crear)
 
 ```
-docker.compose run web python manage.py seeds
+docker-compose run web python manage.py seeds
 ```
 
 Backend para la Administración de Propiedades.

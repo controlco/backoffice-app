@@ -39,11 +39,11 @@ class PropertyTests(APITestCase):
                      "first_name": "Test Name", "last_name": "Test LastName", "is_active": True}
 
         self.client.post(
-            "/signup/", self.data, format="json"
+            "/signup", self.data, format="json"
         )
         data = {"email": self.data["email"], "password": self.data["password"]}
         self.token = self.client.post(
-            "/login/", data, format="json").data["token"]
+            "/login", data, format="json").data["token"]
         self.user = User.objects.get(email=self.data["email"])
 
         self.title = "Propiedad"

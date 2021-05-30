@@ -16,24 +16,24 @@ class UserTests(APITestCase):
     def test_signup(self):
 
         response = self.client.post(
-            "/signup/", self.data, format="json"
+            "/signup", self.data, format="json"
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_login(self):
         self.client.post(
-            "/signup/", self.data, format="json"
+            "/signup", self.data, format="json"
         )
         data = {"email": self.data["email"], "password": self.data["password"]}
-        response = self.client.post("/login/", data, format="json")
+        response = self.client.post("/login", data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_user_update(self):
         self.client.post(
-            "/signup/", self.data, format="json"
+            "/signup", self.data, format="json"
         )
         data = {"email": self.data["email"], "password": self.data["password"]}
-        token = self.client.post("/login/", data, format="json").data["token"]
+        token = self.client.post("/login", data, format="json").data["token"]
         self.admin_authentication(token)
         user = User.objects.get(email=self.data["email"])
         data = {"email": "new@gmail.com"}
@@ -47,11 +47,11 @@ class ReportTests(APITestCase):
                      "first_name": "Test Name", "last_name": "Test LastName", "is_active": True}
 
         self.client.post(
-            "/signup/", self.data, format="json"
+            "/signup", self.data, format="json"
         )
         data = {"email": self.data["email"], "password": self.data["password"]}
         self.token = self.client.post(
-            "/login/", data, format="json").data["token"]
+            "/login", data, format="json").data["token"]
         self.user = User.objects.get(email=self.data["email"])
 
     def admin_authentication(self):
