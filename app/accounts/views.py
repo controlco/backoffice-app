@@ -9,6 +9,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from property_manager.serializers import PropertySerializer
+from fcm_django.models import FCMDevice
 
 # Create your views here.
 
@@ -30,6 +31,33 @@ class UserViewSet(viewsets.ModelViewSet):
         user = self.get_object()
         properties = user.property.all()
         return Response([PropertySerializer(property).data for property in properties])
+
+    @action(methods=["POST", "DELETE"], detail=True)
+    def device(self, request, pk=None):
+        user = self.get_object()
+        if request.method == "DELETE":
+            current_device = FCMDevice.objects.filter(user=user).first()
+            if current_device:
+                current_device.delete()
+            return Response({"status": "deleted"})
+        elif all(field in request.data for field in ["token", "type"]):
+            device_type = request.data["type"]
+            current_device = FCMDevice.objects.filter(user=user).first()
+            if current_device:
+                current_device.registration_id = request.data["token"]
+                current_device.type = device_type
+                current_device.save()
+                return Response({"status": "success"})
+            FCMDevice.objects.create(
+                registration_id=request.data["token"],
+                user=user,
+                type=device_type,
+            )
+            return Response({"status": "success"})
+        return Response(
+            {"Invalid Request": "Invalid Data"},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
 
 class UserRegistrationView(CreateAPIView):

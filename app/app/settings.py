@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders'
+    'corsheaders',
+    'fcm_django'
 ]
 
 ALLOWED_HOSTS = ['*']
@@ -198,7 +199,7 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://localhost:3000",
+    "http://localhost:3000",
 ]
 
 
@@ -207,3 +208,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 django_heroku.settings(locals())
 
+FCM_DJANGO_SETTINGS = {
+    "APP_VERBOSE_NAME": "Administrado de Propiedades",
+    "FCM_SERVER_KEY": env("FCM_SERVER_KEY"),
+}
