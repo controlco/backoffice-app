@@ -36,6 +36,7 @@ Index:
   - [GET properties/](#get-properties)
   - [POST properties/](#post-properties)
   - [GET, PATCH, DELETE properties/{id}/](#get-delete-propertiesid)
+  - [GET, POST, DELETE properties/{id}/meetings/](#get-delete-propertiesid)
 
 - [Report](#report)
 
@@ -709,6 +710,70 @@ Index:
 - Elimina la propiedad.
 - Sin input ni respuesta.
 
+### GET properties/{property_id}/meetings/
+
+- Retorna todas las fechas con sus horas agendadas de la propiedad:
+
+```
+[
+    {
+        "id": 1,
+        "property": 1,
+        "date": "2021-05-22",
+        "hour": 10,
+        "visitor_id": 1
+    },
+    {
+        "id": 2,
+        "property": 1,
+        "date": "2021-05-22",
+        "hour": 11,
+        "visitor_id": 3
+    }
+]
+```
+
+### POST properties/{property_id}/meetings/
+
+- Recibe una fecha y horario para agendar la reunión con la propiedad asociada:
+
+```
+{
+    "date": "2021-05-22",
+    "hour": 9
+}
+```
+
+- Retorna:
+
+```
+{
+    "id": 12,
+    "property": 1,
+    "date": "2021-05-22",
+    "hour": 9,
+    "visitor_id": 3
+}
+```
+
+### DELETE properties/{property_id}/meetings/
+
+- Recibe el id de la reunión para cancelarla:
+
+```
+{
+    "id": 1
+}
+```
+
+- Retorna:
+
+```
+{
+    "Success": "Meeting deleted"
+}
+```
+
 ## [Report](#documentación-api)
 
 ### POST reports/
@@ -775,7 +840,9 @@ Index:
 ## [Image](#documentación-api)
 
 ### GET images/
+
 - Entrega la lista de todas las imagenes:
+
 ```
 [
     {
@@ -798,8 +865,11 @@ Index:
     }
 ]
 ```
+
 ### POST images/
+
 - Crea una nueva imagen asociada a una propiedad, para tener el atributo "cover" se debe subir una imagen:
+
 ```
 {
  "title":"Casa",
@@ -807,6 +877,7 @@ Index:
  "property": 1
 }
 ```
+
 - Retorna:
 
 ```
