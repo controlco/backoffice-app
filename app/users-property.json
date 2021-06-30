@@ -107,5 +107,15 @@
         "to_user": 1,
         "date_time": "2021-05-22T11:57:38.906Z"
       }
+    },
+    {
+      "model": "property_manager.Meeting",
+      "pk": 1,
+      "fields": {
+        "property": 1,
+        "visitor": 1,
+        "hour": 10,
+        "date": "2021-05-22"
+      }
     }
 ]
