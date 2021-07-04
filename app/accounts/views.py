@@ -18,7 +18,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    permission_classes = (IsMyOrReadOnly, )
+    # permission_classes = (IsMyOrReadOnly, )
 
     @action(methods=["GET"], detail=True)
     def reports_done(self, request, pk=None):
@@ -34,6 +34,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(methods=["POST", "DELETE"], detail=True)
     def device(self, request, pk=None):
+        print("INNN")
         user = self.get_object()
         if request.method == "DELETE":
             current_device = FCMDevice.objects.filter(user=user).first()
@@ -101,7 +102,7 @@ class UserLoginView(RetrieveAPIView):
 class ReportViewSet(viewsets.ModelViewSet):
     queryset = Report.objects.all()
     serializer_class = ReportSerializer
-    permission_classes = (permissions.IsAuthenticated, IsOwner)
+    # permission_classes = (permissions.IsAuthenticated, IsOwner)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

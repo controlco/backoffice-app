@@ -99,7 +99,7 @@ class MeetingViewSet(viewsets.ModelViewSet):
     queryset = Meeting.objects.all()
     serializer_class = PropertySerializer
 
-    permission_classes = (IsOwnerOrReadOnly, )
+    # permission_classes = (IsOwnerOrReadOnly, )
 
     def perform_create(self, serializer):
         serializer.save(visitor=self.request.user)
