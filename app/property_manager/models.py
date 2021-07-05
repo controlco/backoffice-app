@@ -66,4 +66,13 @@ class Meeting(models.Model):
                                validators=[MinValueValidator(9), MaxValueValidator(14)])
 
     class Meta:
-        unique_together = ('date', 'hour',)
+        unique_together = ('date', 'hour', 'property')
+
+
+class Notification(models.Model):
+    title = models.CharField(max_length=100, default="Notificación")
+    content = models.TextField()
+    owner = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="notification_owner")
+    receiver = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="notification_receiver")

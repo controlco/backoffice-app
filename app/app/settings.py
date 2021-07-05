@@ -153,8 +153,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -206,4 +205,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 django_heroku.settings(locals())
-

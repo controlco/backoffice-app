@@ -117,5 +117,25 @@
         "hour": 10,
         "date": "2021-05-22"
       }
+    },
+    {
+      "model": "property_manager.Notification",
+      "pk": 1,
+      "fields": {
+        "owner": 2,
+        "receiver": 1,
+        "title": "Nueva visita",
+        "content": "Ha visto una de tus propiedades"
+      }
+    },
+    {
+      "model": "property_manager.Notification",
+      "pk": 2,
+      "fields": {
+        "owner": 2,
+        "receiver": 1,
+        "title": "Nuevo agendamiento",
+        "content": "Ha agendado una de tus propiedades"
+      }
     }
 ]
