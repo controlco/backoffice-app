@@ -1,3 +1,5 @@
+from property_manager.models import Notification
+from django.db.models import query
 from accounts.serializers import UserSerializer, ReportSerializer, UserRegistrationSerializer, UserLoginSerializer
 from rest_framework import viewsets, status
 from accounts.models import User, Report
@@ -8,7 +10,7 @@ from accounts.permissions import IsMyOrReadOnly, IsOwner
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from property_manager.serializers import PropertySerializer
+from property_manager.serializers import PropertySerializer, NotificationSerializer
 
 # Create your views here.
 
@@ -16,8 +18,6 @@ from property_manager.serializers import PropertySerializer
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-    permission_classes = (IsMyOrReadOnly, )
 
     @action(methods=["GET"], detail=True)
     def reports_done(self, request, pk=None):
@@ -30,6 +30,17 @@ class UserViewSet(viewsets.ModelViewSet):
         user = self.get_object()
         properties = user.property.all()
         return Response([PropertySerializer(property).data for property in properties])
+
+    @action(methods=["GET"], detail=True)
+    def notifications(self, request, pk=None):
+        user = self.get_object()
+        notifications_received = user.notification_receiver.all()
+        notifications = []
+        for n in notifications_received:
+            notSer = NotificationSerializer(n).data
+            notSer['content'] = f"{notSer['owner_name']} {notSer['owner_last_name']} {notSer['content']}"
+            notifications.append(notSer)
+        return Response(notifications)
 
 
 class UserRegistrationView(CreateAPIView):

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from accounts.models import User
-from property_manager.models import Property, Region, District, Image, Meeting
+from property_manager.models import Property, Region, District, Image, Meeting, Notification
 
 
 class DistrictSerializer(serializers.ModelSerializer):
@@ -44,3 +44,19 @@ class MeetingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meeting
         fields = ['id', 'property', 'date', 'hour', 'visitor_id']
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    owner_name = serializers.ReadOnlyField(
+        source='owner.first_name')
+    owner_last_name = serializers.ReadOnlyField(
+        source='owner.last_name')
+    receiver_name = serializers.ReadOnlyField(
+        source='receiver.first_name')
+    receiver_last_name = serializers.ReadOnlyField(
+        source='receiver.last_name')
+
+    class Meta:
+        model = Notification
+        fields = ['title', 'content',
+                  'owner_name', 'owner_last_name', 'receiver_name', 'receiver_last_name']

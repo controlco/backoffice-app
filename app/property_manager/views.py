@@ -1,6 +1,6 @@
-from property_manager.serializers import PropertySerializer, RegionSerializer, DistrictSerializer, ImageSerializer, MeetingSerializer
+from property_manager.serializers import PropertySerializer, RegionSerializer, DistrictSerializer, ImageSerializer, MeetingSerializer, NotificationSerializer
 from rest_framework import viewsets
-from property_manager.models import Property, Region, District, Image, Meeting
+from property_manager.models import Property, Region, District, Image, Meeting, Notification
 from rest_framework import permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -99,7 +99,7 @@ class MeetingViewSet(viewsets.ModelViewSet):
     queryset = Meeting.objects.all()
     serializer_class = PropertySerializer
 
-    permission_classes = (IsOwnerOrReadOnly, )
+    # permission_classes = (IsOwnerOrReadOnly, )
 
     def perform_create(self, serializer):
         serializer.save(visitor=self.request.user)
