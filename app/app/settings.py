@@ -39,12 +39,12 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.auth',
     'rest_framework',
     'accounts',
     'property_manager',
     'chat',
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import * 
 
 # Register your models here.
 from .models import Property, Image
@@ -11,4 +12,4 @@ class PropertyAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Property, PropertyAdmin)
-admin.site.register(Image)
+admin.site.unregister(Group)
