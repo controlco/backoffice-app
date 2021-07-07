@@ -12,3 +12,6 @@ class Message(models.Model):
         User, on_delete=models.CASCADE, related_name="to_message")
     date_time = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.from_user.email} to {self.to_user.email}: {self.content}'
